@@ -66,32 +66,7 @@ class SelfDrive extends Component {
 	  dataSource : [],
     };
   }
-  componentDidMount(){
-    return fetch('https://www.saadatrent.com/api/v1/car')
-    .then((response) => response.json())
-   .then((responseJson) => {
-     this.setState({
-       isLoading: false,
-       dataSource: responseJson.cars,
-     }, function() {
-       // In this block you can do something with new state.
-     });
-   })
-   .catch((error) => {
-     console.error(error);
-   });
-  }
-  ListViewItemSeparator = () => {
-   return (
-     <View
-       style={{
-         height: .5,
-         width: "100%",
-         backgroundColor: "#000",
-       }}
-     />
-   );
-  }
+  
 
   toggleTab1() {
     this.props.navigation.navigate("Home");
@@ -113,12 +88,8 @@ class SelfDrive extends Component {
        </View>
      );
    }
-   let title_en=[];
-   let picture=[];
-   for (let i=0;i<this.state.dataSource.length;i++){
-	   title_en[i]=JSON.stringify(this.state.dataSource[i].title_en);
-	   picture[i]=urlpattern+(this.state.dataSource[i].picture);
-	}
+   const { navigation } = this.props;
+   const myData=navigation.getParam('data');
     return (
       <Container >
       <Header style={{ backgroundColor:"#35353c"}}>
@@ -149,18 +120,18 @@ class SelfDrive extends Component {
 
 
 
-        
+
 
 		<FlatList
 
-			data={this.state.dataSource}
+			data={myData}
 			renderItem={({item})=>
 				<Card style={{marginBottom: 15}}>
             <CardItem>
               <Left>
 
                 <Body>
-                  <Text>{item.title_en}</Text>
+                  <Text style={{fontSize:20,fontType:'bold'}}>{item.title_en}</Text>
                 </Body>
               </Left>
             </CardItem>
@@ -176,31 +147,37 @@ class SelfDrive extends Component {
                 source={{uri : urlpattern+item.picture}}
               />
             </CardItem>
+            <CardItem>
+              <Text>{"year :"}{item.year}</Text>
+            </CardItem>
+            <CardItem>
 
+              <Text> 1 to 7 Days :{item.first}€</Text>
+
+            </CardItem>
+            <CardItem>
+
+              <Text> 8 to 16 Days :{item.second}€</Text>
+            </CardItem>
             <CardItem style={{ paddingVertical: 0 }}>
               <Left>
                 <Button transparent>
                   <Icon active name="account" />
                   <Text>5</Text>
                 </Button>
-				<Button transparent>
+				        <Button transparent>
                   <Icon active name="treasure-chest" />
                   <Text>2</Text>
                 </Button>
               </Left>
-              <Body>
-
-				<Button transparent>
-                  <Icon active name="car" />
-                  <Text>Manual</Text>
-                </Button>
-              </Body>
               <Right>
-                <Button transparent>
-                  <Icon active name="thermometer" />
-                  <Text>Air conditioning</Text>
+
+				        <Button transparent>
+                  <Icon active name="car" />
+                  <Text>Automatic</Text>
                 </Button>
               </Right>
+
             </CardItem>
           </Card>
 				}

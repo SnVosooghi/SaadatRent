@@ -73,6 +73,32 @@ class home extends Component {
       tab3: false,
     };
   }
+  componentDidMount(){
+    return fetch('https://www.saadatrent.com/api/v1/car')
+    .then((response) => response.json())
+   .then((responseJson) => {
+     this.setState({
+       isLoading: false,
+       dataSource: responseJson.cars,
+     }, function() {
+       // In this block you can do something with new state.
+     });
+   })
+   .catch((error) => {
+     console.error(error);
+   });
+  }
+  ListViewItemSeparator = () => {
+   return (
+     <View
+       style={{
+         height: .5,
+         width: "100%",
+         backgroundColor: "#000",
+       }}
+     />
+   );
+  }
   toggleTab1() {
     this.props.navigation.navigate("Home");
   }
@@ -118,13 +144,13 @@ class home extends Component {
         <View style={{flex : 2,marginTop : '10%'}}>
           <Row >
             <Col >
-              <TouchableOpacity style={styles.ButtonStyle} onPress={() => this.props.navigation.navigate("SelfDrive")}>
+              <TouchableOpacity style={styles.ButtonStyle} onPress={() => this.props.navigation.navigate("SelfDrive",{data : this.state.dataSource})}>
                 <Icon name="car" style={{color:"white"}}/>
                 <Text style={{color:"white"}}>Self drive</Text>
               </TouchableOpacity>
             </Col>
             <Col >
-              <TouchableOpacity style={styles.ButtonStyle} onPress={() => this.props.navigation.navigate("ChauferDriven")}>
+              <TouchableOpacity style={styles.ButtonStyle} onPress={() => this.props.navigation.navigate("ChauferDriven",{data : this.state.dataSource})}>
                 <Icon name="taxi" style={{color:"white"}} />
                 <Text style={{color:"white"}}>Chauffeur driven</Text>
               </TouchableOpacity>
@@ -132,7 +158,7 @@ class home extends Component {
           </Row>
           <Row>
             <Col >
-              <TouchableOpacity style={styles.ButtonStyle} onPress={() => this.props.navigation.navigate("Van")}>
+              <TouchableOpacity style={styles.ButtonStyle} onPress={() => this.props.navigation.navigate("Van",{data : this.state.dataSource})}>
                 <Icon name="caravan" style={{color:"white"}}/>
                 <Text style={{color:"white"}}>Van</Text>
               </TouchableOpacity>

@@ -25,7 +25,7 @@ import {
   Label,
   Item,
 } from "native-base";
-import { Image, View,Linking } from "react-native";
+import { Image, View,Linking,FlatList } from "react-native";
 import styles from "./styles";
 var BUTTONS = [
   { text: "Option 0", icon: "american-football", iconColor: "#2c8ef4" },
@@ -36,7 +36,7 @@ var BUTTONS = [
 ];
 var DESTRUCTIVE_INDEX = 3;
 var CANCEL_INDEX = 4;
-
+const urlpattern="https://www.saadatrent.com/upload/";
 const dataArray = [
   {
     title: "First Element",
@@ -81,7 +81,7 @@ const cards = [
   }
 ];
 
-class Discounts extends Component {
+class AboutUs extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,6 +89,32 @@ class Discounts extends Component {
       tab2: false,
       tab3: false,
     };
+  }
+  componentDidMount(){
+    return fetch('https://www.saadatrent.com/api/v1/about-us')
+    .then((response) => response.json())
+   .then((responseJson) => {
+     this.setState({
+       isLoading: false,
+       dataSource: responseJson.workers,
+     }, function() {
+       // In this block you can do something with new state.
+     });
+   })
+   .catch((error) => {
+     console.error(error);
+   });
+  }
+  ListViewItemSeparator = () => {
+   return (
+     <View
+       style={{
+         height: .5,
+         width: "100%",
+         backgroundColor: "#000",
+       }}
+     />
+   );
   }
   toggleTab1() {
     this.props.navigation.navigate("Home");
@@ -119,14 +145,41 @@ class Discounts extends Component {
             <Icon name="phone" />
           </Button>
           <Button transparent onPress={()=>{Linking.openURL('http://api.whatsapp.com/send?phone=+989128005848');}}>
-            <Icon name="whatsapp" style={{color :"#25D366"}}/>
+            <Icon name="whatsapp" />
           </Button>
         </Right>
 
       </Header>
 
         <Content >
-          <Text style={{flex : 1,padding : 10,alignContent:"center"}}>In Saadat Rent, the most important and main goal is customer satisfaction. Our main effort at this company is to meet customer needs and desires and also provide the best and most appropriate services and facilities for them. Indeed, in this business, our customers are not dependent on us, but we are dependent on them, so that we use all our efforts and experience to do whatever our customers expect from us. In all your moments of your travel in Iran, we are ready to serve and help you and will do our best to bring your needs all around the country to your dear travelers.</Text>
+          <Text style={{flex : 1,padding : 16,alignSelf:"center",fontType:"bold",fontSize :20}}>WE ARE SAADATRENT</Text>
+          <Text style={{flex : 1,padding : 10,alignItems:"center"}}>In Saadat Rent, the most important and main goal is customer satisfaction. Our main effort at this company is to meet customer needs and desires and also provide the best and most appropriate services and facilities for them. Indeed, in this business, our customers are not dependent on us, but we are dependent on them, so that we use all our efforts and experience to do whatever our customers expect from us. In all your moments of your travel in Iran, we are ready to serve and help you and will do our best to bring your needs all around the country to your dear travelers.</Text>
+          <Text style={{flex : 1,paddingTop : 22,paddingLeft: 10,paddingRight: 10,paddingBottom : 10,alignItems:"center",color:"blue"}}>"Saadat Rent is a big company that its members around Iran are ready to provide customer service. No matter how large this company is, we are more like a family than colleagues, a family that each member is unique in their own way."</Text>
+          <FlatList
+
+      			data={this.state.dataSource}
+      			renderItem={({item})=>
+      				<Card style={{marginBottom: 15,alignItems:"center"}}>
+
+
+                  <CardItem cardBody style={{alignItems:"center"}}>
+
+                    <Thumbnail large source={{uri : item.image}} style={{alignSelf:"center",margin:10}} />
+                  </CardItem>
+
+                  <CardItem >
+                    <Text style={{fontType:"bold",fontSize :20}}>{item.full_name}</Text>
+                  </CardItem>
+                  <CardItem style={{ paddingVertical: 0 }}>
+                    <Text>{item.title}</Text>
+                  </CardItem>
+                  <CardItem >
+                    <Text>{item.description}</Text>
+                  </CardItem>
+                </Card>
+      				}
+
+      			/>
         </Content>
 
 
@@ -156,4 +209,4 @@ class Discounts extends Component {
 }
 
 
-export default Discounts;
+export default AboutUs;

@@ -21,10 +21,16 @@ import {
   Thumbnail,
   IconNB
 } from "native-base";
-import { Image, View, TouchableOpacity, TouchableHighlight, ScrollView, ImageBackground,FlatList,ListView } from "react-native";
+import { Image, Dimensions,View,ScrollView,Linking } from "react-native";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import ImageSlider from 'react-native-image-slider';
 import styles from "./styles";
+const deviceWidth = Dimensions.get("window").width;
+const cardImage = require("../../../assets/drawer-cover.png");
+const first = require("../../../assets/wall1.jpg");
+const second = require("../../../assets/jhn.jpg");
+const third = require("../../../assets/ramadan3.jpg");
+const fourth = require("../../../assets/suri16.jpg");
 var BUTTONS = [
   { text: "Option 0", icon: "american-football", iconColor: "#2c8ef4" },
   { text: "Option 1", icon: "analytics", iconColor: "#f42ced" },
@@ -34,7 +40,6 @@ var BUTTONS = [
 ];
 var DESTRUCTIVE_INDEX = 3;
 var CANCEL_INDEX = 4;
-const logo = require("../../../assets/saadatrent-logo-blue-11.png");
 const urlpattern="https://www.saadatrent.com/upload/";
 const dataArray = [
   {
@@ -66,32 +71,7 @@ class SelfDrive extends Component {
 	  dataSource : [],
     };
   }
-  componentDidMount(){
-    return fetch('https://www.saadatrent.com/api/v1/car')
-    .then((response) => response.json())
-   .then((responseJson) => {
-     this.setState({
-       isLoading: false,
-       dataSource: responseJson.cars,
-     }, function() {
-       // In this block you can do something with new state.
-     });
-   })
-   .catch((error) => {
-     console.error(error);
-   });
-  }
-  ListViewItemSeparator = () => {
-   return (
-     <View
-       style={{
-         height: .5,
-         width: "100%",
-         backgroundColor: "#000",
-       }}
-     />
-   );
-  }
+
 
   toggleTab1() {
     this.props.navigation.navigate("Home");
@@ -113,12 +93,7 @@ class SelfDrive extends Component {
        </View>
      );
    }
-   let title_en=[];
-   let picture=[];
-   for (let i=0;i<this.state.dataSource.length;i++){
-	   title_en[i]=JSON.stringify(this.state.dataSource[i].title_en);
-	   picture[i]=urlpattern+(this.state.dataSource[i].picture);
-	}
+
     return (
       <Container >
       <Header style={{ backgroundColor:"#35353c"}}>
@@ -148,64 +123,155 @@ class SelfDrive extends Component {
 
 
 
+      <ScrollView style={{flex :1}}>
+      <Card style={styles.mb}>
+        <CardItem bordered>
+          <Left>
+            <Body>
+              <Text style={{fontType:"bold",fontSize :18}} >5 reasons why you should visit Iran now</Text>
+              <Text note>April 13, 2019</Text>
+            </Body>
+          </Left>
+        </CardItem>
 
-        
+        <CardItem>
+          <Body>
+            <Image
+              style={{
+                alignSelf: "center",
+                height: 150,
+                resizeMode: "cover",
+                width: deviceWidth / 1.18,
+                marginVertical: 5
+              }}
+              source={first}
+            />
+            <Text style={{padding :10}} onPress={()=>{Linking.openURL('https://www.saadatrent.com/english/article/why-you-should-travel-iran');}}>
+              Why you should travel to Iran at least once in your life Iran is a country that nowadays hits on the headlines all around the world. You can hear the name of Iran between all travelers and even in me...
+            </Text>
+          </Body>
+        </CardItem>
+        <CardItem style={{ paddingVertical: 0 }}>
+          <Left>
+            <Button transparent>
 
-		<FlatList
+              <Text note>By Cmin</Text>
+            </Button>
+          </Left>
+        </CardItem>
+      </Card>
+      <Card style={styles.mb}>
+        <CardItem bordered>
+          <Left>
+            <Body>
+              <Text style={{fontType:"bold",fontSize :18}}>six natural attractions in Iran you have never seen before</Text>
+              <Text note>April 11, 2019</Text>
+            </Body>
+          </Left>
+        </CardItem>
 
-			data={this.state.dataSource}
-			renderItem={({item})=>
-				<Card style={{marginBottom: 15}}>
-            <CardItem>
-              <Left>
+        <CardItem>
+          <Body>
+            <Image
+              style={{
+                alignSelf: "center",
+                height: 150,
+                resizeMode: "cover",
+                width: deviceWidth / 1.18,
+                marginVertical: 5
+              }}
+              source={second}
+            />
+            <Text style={{padding :10}} onPress={()=>{Linking.openURL('https://www.saadatrent.com/english/article/six-pristine-attractions-in-iran');}}>
+              6 Iran ecotourism attractions you must see in your Iran tour The nature of the northern part of Iran in the Caspian Sea and also its lush green forests, the Persian Gulf coasts, the warm and desired...
+            </Text>
+          </Body>
+        </CardItem>
+        <CardItem style={{ paddingVertical: 0 }}>
+          <Left>
+            <Button transparent>
 
-                <Body>
-                  <Text>{item.title_en}</Text>
-                </Body>
-              </Left>
-            </CardItem>
+              <Text note>By Cmin</Text>
+            </Button>
+          </Left>
+        </CardItem>
+      </Card>
+      <Card style={styles.mb}>
+        <CardItem bordered>
+          <Left>
+            <Body>
+              <Text style={{fontType:"bold",fontSize :18}}>Most Useful Tips For traveling Iran during Ramadan</Text>
+              <Text note>April 9, 2016</Text>
+            </Body>
+          </Left>
+        </CardItem>
 
-            <CardItem cardBody>
-              <Image
-                style={{
-                  resizeMode: "cover",
-                  width: null,
-                  height: 200,
-                  flex: 1
-                }}
-                source={{uri : urlpattern+item.picture}}
-              />
-            </CardItem>
+        <CardItem>
+          <Body>
+            <Image
+              style={{
+                alignSelf: "center",
+                height: 150,
+                resizeMode: "cover",
+                width: deviceWidth / 1.18,
+                marginVertical: 5
+              }}
+              source={third}
+            />
+            <Text style={{padding :10}} onPress={()=>{Linking.openURL('https://www.saadatrent.com/english/article/travel-iran-during-ramadan');}}>
+              Traveling to Iran during Ramadan The Ramadan month is very especial between all Muslims. All Muslims in the world and in Iran fast during this month. But what is fasting? What is its philosophy, and...
+            </Text>
+          </Body>
+        </CardItem>
+        <CardItem style={{ paddingVertical: 0 }}>
+          <Left>
+            <Button transparent>
 
-            <CardItem style={{ paddingVertical: 0 }}>
-              <Left>
-                <Button transparent>
-                  <Icon active name="account" />
-                  <Text>5</Text>
-                </Button>
-				<Button transparent>
-                  <Icon active name="treasure-chest" />
-                  <Text>2</Text>
-                </Button>
-              </Left>
-              <Body>
+              <Text note>By Cmin</Text>
+            </Button>
+          </Left>
+        </CardItem>
+      </Card>
+      <Card style={styles.mb}>
+        <CardItem bordered>
+          <Left>
+            <Body>
+              <Text style={{fontType:"bold",fontSize :18}}>Everything about Chaharshanbe Suri</Text>
+              <Text note>March 9, 2016</Text>
+            </Body>
+          </Left>
+        </CardItem>
 
-				<Button transparent>
-                  <Icon active name="car" />
-                  <Text>Manual</Text>
-                </Button>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Icon active name="thermometer" />
-                  <Text>Air conditioning</Text>
-                </Button>
-              </Right>
-            </CardItem>
-          </Card>
-				}
+        <CardItem>
+          <Body>
+            <Image
+              style={{
+                alignSelf: "center",
+                height: 150,
+                resizeMode: "cover",
+                width: deviceWidth / 1.18,
+                marginVertical: 5
+              }}
+              source={fourth}
+            />
+            <Text style={{padding :10}} onPress={()=>{Linking.openURL('https://www.saadatrent.com/english/article/Everything-about-Chaharshanbe-Suri');}}>
+              Everything you should know about Chaharshanbe Suri Iranian people like the other ancient nations have their own customs and traditions. One of our new year ritual, which should be a mixture of severa...
+            </Text>
+          </Body>
+        </CardItem>
+        <CardItem style={{ paddingVertical: 0 }}>
+          <Left>
+            <Button transparent>
 
-			/>
+              <Text note>By Cmin</Text>
+            </Button>
+          </Left>
+        </CardItem>
+      </Card>
+      </ScrollView>
+
+
+
 
 
 

@@ -35,43 +35,43 @@ var CANCEL_INDEX = 4;
 
 const dataArray = [
   {
-    title: "First Element",
+    title: "Is there a contract and official invoice\n when renting a car?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "at the pick -up time , you will receive an official contract and, if necessary, you can receive the official invoice from our Central branch!"
   },
   {
-    title: "Second Element",
+    title: "Is it possible to deliver the car\n at the desired location",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "The places where customers can deliver or repatriate a car include: the central office of Tehran, Mehrabad airport, Imam Khomeini airport, Shiraz airport, as well as its location or hotel in Tehran."
   },
   {
-    title: "Third Element",
+    title: "When is deposit return?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "deposit is returned to the customer at the drop off time"
   },{
-    title: "Fourth Element",
+    title: "How can i find you at the pick-up time\n at the airport?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "We are aware of your arrival by your ticket information and will be waiting for you holding a paging board"
   },
   {
-    title: "Fifth Element",
+    title: "What will happen if the car breaks down?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "All vehicles are produced newly and if any technical problem happens , we will provide customer service less than 45 minutes anywhere. In additional , if the problem is not fixable , we will change the car less than 24 hours. All of these services are free ."
   },
   {
-    title: "Sixth Element",
+    title: "what documents are needed to rent a car\n without a driver?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "Copy of the passport + 200 euros as deposit + Copy of your driving license (international or local) + Return flight ticket. deposit is returned to the customer at the drop off time"
   },
   {
-    title: "7th Element",
+    title: "How long is minimum rental period?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "The minimum rental period for self- drive cars is 3 days. Cars and vans with a driver are hourly and daily."
   },
   {
-    title: "8th Element",
+    title: "what is insurance and allowed mileage policy?",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
+      "All of our vehicles have the most complete and highest level of CDW insurance coverage and no limitations on mileage"
   },
 ];
 
@@ -113,19 +113,20 @@ class Todo extends Component {
           <Icon name="phone" />
         </Button>
         <Button transparent onPress={()=>{Linking.openURL('http://api.whatsapp.com/send?phone=+989128005848');}}>
-          <Icon name="whatsapp" style={{color :"#25D366"}}/>
+          <Icon name="whatsapp" />
         </Button>
         </Right>
       </Header>
 
-        <Content padder />
+
 
         <Accordion
+          style={{flex :1,padding : 10}}
           dataArray={dataArray}
           animation={true}
           expanded={true}
-          icon="add"
-          expandedIcon="remove"
+          icon="chevron-down"
+          expandedIcon="chevron-up"
           iconStyle={{ color: "green" }}
           expandedIconStyle={{ color: "red" }}
         />
