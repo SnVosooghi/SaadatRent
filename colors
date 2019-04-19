@@ -1,0 +1,37 @@
+#ff5f00 narenji
+font : Good times
+sidebar : #35353c
+
+Car Rental in Iran
+Tehran-Airport-IKA-Shiraz-Isfahan
+
+
+<Title style={{fontSize:15,fontFamily: 'good times rg',color : "#ff5f00"}}>Saadat Rent</Title>
+
+
+
+<Pdf
+          source={source}
+          style={{flex: 1,width: Dimensions.get('window').width }}
+        />;
+        
+
+<View style={{flex : 2,padding:10}}>
+  <Row>
+  <Col >
+    <Text style={{fontSize:14,paddingTop : 7}}>- Free fully Insured (CWD)</Text>
+    <Text style={{fontSize:14,paddingTop : 7}}>- Free Unlimited mileage</Text>
+    <Text style={{fontSize:14,paddingTop : 7}}>- New and Clean Vehicles</Text>
+    <Text style={{fontSize:14,paddingTop : 7}}>- Best Price Guarantee </Text>
+    <Text style={{fontSize:14,paddingTop : 7}}>- No Credit Card Fees</Text>
+    <Text style={{fontSize:14,paddingTop : 7}} numberOfLines={1}>- Immediate Deposit Return</Text>
+    <Text style={{fontSize:14,paddingTop : 7}}>- Emergency Roadside</Text>
+  </Col>
+  <Col >
+    <Image
+      source={require("../../../assets/editedIran.png")}
+      style={{width :'100%',height:'100%',resizeMode :"contain"}}
+    />
+  </Col>
+  </Row>
+</View>
